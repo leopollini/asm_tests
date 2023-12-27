@@ -5,7 +5,7 @@ description:
 the purpose of this function is te translation of a string into a long value, by conversion 'base'.
 In the main.c file there is the function call with preset base 16, and the input string is taken from argv[1]
 
-examples ():
+examples:
 $>./test 100
 256
 
