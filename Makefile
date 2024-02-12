@@ -6,11 +6,12 @@
 #    By: lpollini <lpollini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/15 14:54:43 by ncolomer          #+#    #+#              #
-#    Updated: 2023/12/27 23:53:14 by lpollini         ###   ########.fr        #
+#    Updated: 2024/02/12 16:28:50 by lpollini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		=	 ft_atoi_base.s
+SRCS		=	ft_strlen.s ft_strcmp.s ft_strcpy.s \
+ft_write.s ft_read.s ft_strdup.s ft_lststuff.s ft_atoi_base.s pipex.s
 OBJS		=	$(SRCS:.s=.o)
 OBJSDIR		=	.
 BONUS_SRCS	=	
@@ -23,6 +24,11 @@ NAME		=	libasm.a
 TEST		=	test
 TEST_BONUS	=	test_bonus
 
+test:			$(NAME)
+				gcc $(FLAGS) -o $(TEST) main.c $(NAME)
+				rm *.o
+				./$(TEST) < Makefile
+				@echo
 
 all:			$(NAME)
 
@@ -39,11 +45,6 @@ fclean:			clean
 				rm -rf $(NAME) $(BONUS) $(TEST) $(TEST_BONUS)
 re:				fclean $(NAME)
 
-test:			$(NAME)
-				gcc $(FLAGS) -o $(TEST) main.c $(NAME)
-				rm *.o
-				./$(TEST) < Makefile
-				@echo
 
 bonus:			$(OBJS) $(BONUS_OBJS)
 				ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
