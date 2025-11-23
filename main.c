@@ -42,11 +42,11 @@ int main(int argn, char *argv[])
 	printf("argv[1]: \'%s\'\n\n", argv[1]);
 	printf("---- now testing stuff ----\n");
 
-	printf("ft_strlen: %i\n\n", ft_strlen(argv[1]));
+	printf("ft_strlen: %i (%c)\n\n", ft_strlen(argv[1]), ft_strlen(argv[1]));
 	
 	char *copy = malloc(ft_strlen(argv[1]) + 1);
 	ft_strcpy(copy, argv[1]);
-	printf("ft_strcpy (len): %i\n\n", ft_strlen(argv[1]));
+	printf("ft_strcpy \'%s\' (len): %i\n\n", copy, ft_strlen(argv[1]));
 
 	printf("ft_strcmp 1: %i\n", ft_strcmp(copy, argv[1]));
 	copy[1] = 'd';

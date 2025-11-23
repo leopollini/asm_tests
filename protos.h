@@ -25,7 +25,7 @@ typedef struct s_list
 }			t_list;
 
 
-extern int	ft_strlen(char *s);
+extern int	ft_strlen(const char *s);
 extern int	ft_strcmp(char *s1, char *s2);
 extern void	ft_strcpy(char *to, char *fro);
 extern int	ft_write(int fd, char *s, size_t n);
