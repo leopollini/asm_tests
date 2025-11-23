@@ -1,8 +1,12 @@
-	section .text
+section .text
 	global	ft_strcmp
 
 ft_strcmp:									; entry point : rdi -> s1, rsi -> s2
 			xor		rax, rax				; rax to 0
+			cmp		rdi, 0					; NULL check
+			jz		end
+			cmp		rsi, 0					; NULL check
+			jz		end
 			mov		rcx, -1
 
 loop:
@@ -12,10 +16,10 @@ loop:
 			jz		ends1					; if s1[i] is 0 then exits with -s2[i]
 			sub		al, BYTE[rsi + rcx]		; s1[i] - s2[i]
 			jz		loop					; if the result is 0 then loops
-			jnc		end						; else if s1[i] > s2[i] then exits
-			neg		al
-			neg		rax						; else exit with s2[i] - s1[i]
-			jmp		end						; skip next section
+			jnc		end						; else if s1[i] > s2[i] then correcly negate al
+			neg		al						;
+			neg		rax						;
+			ret								; and return
 ends1:
 			mov		al, BYTE[rsi + rcx]		; in case s1[i] is 0
 			neg		rax						; exit with -s2[i]

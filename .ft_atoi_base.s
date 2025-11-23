@@ -7,12 +7,12 @@ ft_atoi_base:						; int ft_atoi_base(char *s, short base) : rdi -> s, rsi -> ba
 			cmp		rsi, 2			; bad input
 			jc		fail
 			xor		cl, cl			; cl to 0 (will contain signs)
-			xor		rax, rax		; rax to 0 (result)
+			xor		rax, rax		; rax to 0 (for result)
 			mov		rdx, 1
 check_sign:							; sign skip routine. Skips all signs and return
 									; cl odd if result is negative
 			cmp		byte[rdi], '-'	; s[0] is '-'
-			jnz		cs_pos				; test positive
+			jnz		cs_pos			; test positive
 			inc		cl				; increment cl
 			inc		rdi				; s++
 cs_pos:
@@ -54,5 +54,5 @@ pos:
 			ret						; return
 		
 fail:
-			xor		rax, rax		; return 0 (failed: bad input)
+			mov		rax, 0		; return 0 (failed: bad input)
 			ret

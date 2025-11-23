@@ -3,31 +3,33 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lpollini <lpollini@student.42.fr>          +#+  +:+       +#+         #
+#    By: lpollini <lpollini@student.42firenze.it    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/11/15 14:54:43 by ncolomer          #+#    #+#              #
-#    Updated: 2024/02/12 16:28:50 by lpollini         ###   ########.fr        #
+#    Created: 2024/11/15 14:54:43 by lpollini          #+#    #+#              #
+#    Updated: 2025/11/19 20:22:30 by lpollini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS		=	ft_strlen.s ft_strcmp.s ft_strcpy.s \
-ft_write.s ft_read.s ft_strdup.s ft_lststuff.s ft_atoi_base.s pipex.s
-OBJS		=	$(SRCS:.s=.o)
+ft_write.s ft_read.s ft_strdup.s #ft_lststuff.s ft_atoi_base.s
 OBJSDIR		=	.
+OBJS		=	$(SRCS:.s=.o)
 BONUS_SRCS	=	
 BONUS_OBJS	=	$(BONUS_SRCS:.s=.o)
 
 NA			=	nasm
-NA_FLAGS	=	-f elf64 -g
-FLAGS 		=	-no-pie -g
+NA_FLAGS	=	-f elf64 -g -F dwarf -D PIC
+FLAGS 		=	-L. -lasm -g #-no-pie
 NAME		=	libasm.a
 TEST		=	test
 TEST_BONUS	=	test_bonus
 
+ARG			=	104
+
 test:			$(NAME)
-				gcc $(FLAGS) -o $(TEST) main.c $(NAME)
+				gcc -o $(TEST) main.c $(FLAGS) $(NAME)
 				rm *.o
-				./$(TEST) < Makefile
+# 				./$(TEST) $(ARG)
 				@echo
 
 all:			$(NAME)
